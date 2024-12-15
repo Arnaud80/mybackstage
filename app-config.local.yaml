@@ -1,0 +1,32 @@
+# Backstage override configuration for your local development environment
+backend:
+  database:
+    connection:
+      host: ${POSTGRES_HOST}
+      # Default postgresql port is 5432; this might be different for your installation
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      # Replace the password below with your postgresql password:
+      password: ${POSTGRES_PASSWORD}
+
+auth:
+  providers:
+    github:
+      development:
+        clientId: ${GITHUB_CLIENT_ID}
+        clientSecret: ${GITHUB_CLIENT_SECRET}
+        signIn:
+          resolvers:
+            - resolver: usernameMatchingUserEntityName
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+#    - id: publish
+#      name: Publish
+#      action: publish:github
+#      input:
+#        repoUrl: '{{ parameters.repoUrl }}'
+#        repoVisibility: public # or 'internal' or 'private'
+
